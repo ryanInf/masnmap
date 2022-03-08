@@ -1,3 +1,6 @@
+# 说明
+本项目源于 [starnightcyber/masnmap](https://github.com/starnightcyber/masnmap)，已修改其支持的masscan版本为1.3.2版本，其它版本请自行测试。
+
 # masnmap
 masscan + nmap 快速端口存活检测和服务识别。
 
