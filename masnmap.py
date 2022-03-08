@@ -34,24 +34,35 @@ def extract_masscan():
     """
     extract masscan result file masscan.json into ip:port format, and add to queue
     """
+    # with open(masscan_file, 'r') as fr:
+    #     tmp_lines = fr.readlines()
+    #     lines = tmp_lines[1:-1]
+    #     global total_ports
+    #     total_ports = len(lines)
+    #     for line in lines:
+    #         tmp = line.strip(',\n')
+    #         line_json = json.loads(tmp)
+    #         # print(line_json)
+    #         # extract ip & port
+    #         ip = line_json['ip']
+    #         port = line_json['ports'][0]['port']
+
+    #         # combine ip:port, and add to queue
+    #         ip_port = '{}:{}'.format(ip, port)
+    #         task_queue.put(ip_port)
+    #         print(ip_port)
+            # exit()
+    #### Masscan version 1.3.2
     with open(masscan_file, 'r') as fr:
-        tmp_lines = fr.readlines()
-        lines = tmp_lines[1:-1]
-        global total_ports
+        lines = json.load(fr)
         total_ports = len(lines)
         for line in lines:
-            tmp = line.strip(',\n')
-            line_json = json.loads(tmp)
-            # print(line_json)
-            # extract ip & port
-            ip = line_json['ip']
-            port = line_json['ports'][0]['port']
+            ip = line['ip']
+            port = line['ports'][0]['port']
 
-            # combine ip:port, and add to queue
             ip_port = '{}:{}'.format(ip, port)
             task_queue.put(ip_port)
             print(ip_port)
-            # exit()
     pass
 
 
